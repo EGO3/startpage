@@ -10,10 +10,8 @@ import { Time } from "@/components/Time";
 import styles from "@/styles/Home.module.css";
 import { HackerNewsLinkHolder } from "@/types/hackernews";
 import { TransformedNiwaData } from "@/types/niwa";
-import { StravaGraphData } from "@/types/strava";
 import { getHackerNewsData } from "@/pages/api/hackerNews";
 import { getNiwaData } from "@/pages/api/niwaUV";
-import { getStravaData } from "@/pages/api/strava";
 import { WindFinderLinks } from "@/components/WindFinderLinks";
 import { getWeatherData } from "./api/weather";
 import { WeatherData } from "@/types/weather";
@@ -23,14 +21,12 @@ import { Spotify } from "@/components/Spotify";
 import { NowPlayingSpotifyData } from "@/types/spotify";
 
 type PageProps = {
-  stravaData: StravaGraphData;
   niwaData: TransformedNiwaData[];
   hackerNewsData: HackerNewsLinkHolder[];
   weatherData: WeatherData;
 };
 
 const Home: NextPage<PageProps> = ({
-  stravaData,
   niwaData,
   hackerNewsData,
   weatherData,
@@ -67,7 +63,6 @@ const Home: NextPage<PageProps> = ({
           maxH="330px"
           minW="530px"
         >
-          <StravaGraph stravaData={stravaData} />
         </GridItem>
         <GridItem
           borderRadius="15"
@@ -167,9 +162,8 @@ const Home: NextPage<PageProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const [stravaData, niwaData, hackerNewsData, weatherData] =
+  const [niwaData, hackerNewsData, weatherData] =
     await Promise.all([
-      getStravaData(),
       getNiwaData(),
       getHackerNewsData(),
       getWeatherData(),
@@ -177,7 +171,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     ]);
 
   return {
-    props: { stravaData, niwaData, hackerNewsData, weatherData },
+    props: {niwaData, hackerNewsData, weatherData },
     revalidate: 600,
   };
 };
