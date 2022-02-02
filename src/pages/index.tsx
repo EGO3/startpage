@@ -5,7 +5,6 @@ import ColorModeSwitcher from "@/components/ColorModeSwitcher";
 import { HackerNewsFeed } from "@/components/HackerNewsFeed";
 import { NiwaUvGraph } from "@/components/NiwaUvGraph";
 import { SearchBar } from "@/components/SearchBar";
-import { StravaGraph } from "@/components/StravaGraph";
 import { SwimmingPoolTimeTable } from "@/components/SwimmingPoolTimeTable";
 import { Time } from "@/components/Time";
 import styles from "@/styles/Home.module.css";
